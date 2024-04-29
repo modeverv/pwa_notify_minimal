@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "make-vapid": "node make_vapid.js",
+    "send": "node index.js"
+  },
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}

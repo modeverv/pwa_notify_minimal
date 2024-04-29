@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Push Notification Sample</title>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        // Service Workerを登録
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+
+        // 通知の許可を求める
+        function askPermission() {
+            alert(1);
+            console.log(2);
+            Notification.requestPermission().then(function(permission) {
+                if (permission === 'granted') {
+                    subscribeUserToPush();
+                }
+            });
+        }
+
+        // プッシュ通知を購読
+        function subscribeUserToPush() {
+            navigator.serviceWorker.ready.then(function(registration) {
+                registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: '公開キー'
+                }).then(function(subscription) {
+                    console.log('User is subscribed:', subscription);
+                    console.log(subscription.endpoint);
+                    // キーを取得してBase64文字列に変換
+                    const key_p256dh = btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh'))));
+                    const key_auth = btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth'))));
+                    console.log('p256dh:', key_p256dh);
+                    console.log('auth:', key_auth);
+                })
+                    .catch(function(err) {
+                        console.log('Failed to subscribe the user: ', err);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>Push Notification Demo</h1>
+<button onclick="askPermission();">Enable Notifications</button>
+</body>
+</html>
