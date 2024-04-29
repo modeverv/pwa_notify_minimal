@@ -21,7 +21,7 @@ google calendarみたいにpc/macで閉じるボタンを押すまで通知が�
 pwaが動くためにはhttpsでのindex.htmlの配信が必要である
 
 ## 動作サンプル
-- 送信部分: `send.mp4` <video src="https://lovesaemi.daemon.asia/dev/send.mp4" width="320" height="240" controls></video>
-- 受信部分: `notify.mp4` <video src="https://lovesaemi.daemon.asia/dev/notify.mp4"  width="320" height="240" controls></video>
+- 送信部分: `send.mp4` <br/>[![send](http://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://lovesaemi.daemon.asia/dev/send.mp4 "send")
+- 受信部分: `notify.mp4` <br/>[![notify](http://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://lovesaemi.daemon.asia/dev/notify.mp4 "send")
 
 
